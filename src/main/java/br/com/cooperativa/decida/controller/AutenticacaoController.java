@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cooperativa.decida.controller.form.LoginForm;
+import br.com.cooperativa.decida.dto.TokenDto;
 import br.com.cooperativa.decida.service.TokenService;
 import lombok.RequiredArgsConstructor;
 
@@ -22,12 +23,13 @@ public class AutenticacaoController {
 	private final TokenService tokenService;
 	
 	@PostMapping
-	public ResponseEntity<String> login(@RequestBody LoginForm form) {
+	public ResponseEntity<TokenDto> login(@RequestBody LoginForm form) {
 		UsernamePasswordAuthenticationToken credentials = form.toAuthenticationToken();
 		try {
 			Authentication authentication = authManager.authenticate(credentials);
 			
-			return ResponseEntity.ok(tokenService.gerarToken(authentication));
+			TokenDto token = new TokenDto(tokenService.gerarToken(authentication), "Bearer");
+			return ResponseEntity.ok(token);
 		} catch (AuthenticationException e) {
 			return ResponseEntity.badRequest().build();
 		}

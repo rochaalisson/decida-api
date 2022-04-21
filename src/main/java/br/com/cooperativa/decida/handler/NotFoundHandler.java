@@ -1,4 +1,4 @@
-package br.com.cooperativa.decida.config.validacao;
+package br.com.cooperativa.decida.handler;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import br.com.cooperativa.decida.dto.ErroDto;
+
 @RestControllerAdvice
-public class NotFoundHandler {	
+public class NotFoundHandler {
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	@ExceptionHandler(EntityNotFoundException.class)
-	public String handle(EntityNotFoundException exception) {
-		return exception.getLocalizedMessage();
+	public ErroDto handle(EntityNotFoundException exception) {
+		return new ErroDto(exception.getLocalizedMessage());
 	}
 }

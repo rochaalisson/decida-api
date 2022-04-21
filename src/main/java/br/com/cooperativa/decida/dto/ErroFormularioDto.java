@@ -1,4 +1,4 @@
-package br.com.cooperativa.decida.config.validacao;
+package br.com.cooperativa.decida.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
