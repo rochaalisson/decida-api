@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
@@ -11,16 +12,18 @@ import javax.persistence.OneToOne;
 
 import br.com.cooperativa.decida.dto.SessaoVotacaoDto;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class SessaoVotacao {
 	@Id
 	private Integer idPauta;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
-	private Long prazoExpiracaoMinutos = 1l;
+	private LocalDateTime dataExpiracao = dataCriacao.plusMinutes(1);
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "sessao")
 	private List<Voto> votos;
 	@OneToOne
 	@MapsId
@@ -28,16 +31,11 @@ public class SessaoVotacao {
 	
 	public SessaoVotacao(SessaoVotacaoDto dto, Pauta pauta) {
 		this.pauta = pauta;
-		if(dto.getPrazoExpiracaoMinutos() != null)
-			this.prazoExpiracaoMinutos = dto.getPrazoExpiracaoMinutos();
+		if(dto.getDataExpiracao() != null)
+			this.dataExpiracao = dto.getDataExpiracao();
 	}
 	
-	public void setPauta(Pauta pauta) {
-		this.pauta = pauta;
+	public Boolean isExpirada() {
+		return LocalDateTime.now().isAfter(dataExpiracao);
 	}
-	
-	public void setPrazoExpiracao(Long prazoExpiracao) {
-		this.prazoExpiracaoMinutos = prazoExpiracao;
-	}
-	
 }

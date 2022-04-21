@@ -10,11 +10,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@AllArgsConstructor @NoArgsConstructor @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class Usuario {
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String email;
 	private String senha;
 }

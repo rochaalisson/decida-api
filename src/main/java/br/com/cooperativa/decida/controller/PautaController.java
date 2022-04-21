@@ -5,6 +5,8 @@ import static br.com.cooperativa.decida.util.ConversorDeObjeto.converter;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.cooperativa.decida.controller.form.PautaForm;
 import br.com.cooperativa.decida.controller.form.SessaoVotacaoForm;
 import br.com.cooperativa.decida.dto.PautaDto;
+import br.com.cooperativa.decida.dto.ResultadoPautaDto;
 import br.com.cooperativa.decida.dto.SessaoVotacaoDto;
 import br.com.cooperativa.decida.service.PautaService;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +32,7 @@ public class PautaController {
 	private final PautaService pautaService;
 	
 	@PostMapping
-	public ResponseEntity<PautaDto> cadastrar(@RequestBody PautaForm form, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<PautaDto> cadastrar(@RequestBody @Valid PautaForm form, UriComponentsBuilder uriBuilder) {
 		PautaDto pauta = converter(form, PautaDto.class);
 		pauta = pautaService.cadastrar(pauta);
 		
@@ -44,6 +47,13 @@ public class PautaController {
 		return pautas;
 	}
 	
+	@GetMapping("/{id}")
+	public ResultadoPautaDto obterResultado(@PathVariable Integer id) throws Exception {
+		ResultadoPautaDto resultado = pautaService.obterResultado(id);
+		
+		return resultado;
+	}
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deletar(@PathVariable Integer id) {
 		pautaService.deletar(id);
@@ -52,7 +62,7 @@ public class PautaController {
 	}
 	
 	@PostMapping("/{idPauta}/abrirSessao")
-	public ResponseEntity<SessaoVotacaoDto> abrirSessao(@RequestBody SessaoVotacaoForm form, @PathVariable Integer idPauta, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<SessaoVotacaoDto> abrirSessao(@RequestBody @Valid SessaoVotacaoForm form, @PathVariable Integer idPauta, UriComponentsBuilder uriBuilder) {
 		SessaoVotacaoDto sessao = new SessaoVotacaoDto(idPauta, form);
 		sessao = pautaService.abrirSessao(sessao);
 		

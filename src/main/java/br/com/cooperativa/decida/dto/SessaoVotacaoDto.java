@@ -1,5 +1,7 @@
 package br.com.cooperativa.decida.dto;
 
+import java.time.LocalDateTime;
+
 import br.com.cooperativa.decida.controller.form.SessaoVotacaoForm;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,10 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SessaoVotacaoDto {
 	private Integer idPauta;
-	private Long prazoExpiracaoMinutos;
+	private LocalDateTime dataExpiracao;
 	
 	public SessaoVotacaoDto(Integer idPauta, SessaoVotacaoForm form) {
 		this.idPauta = idPauta;
-		this.prazoExpiracaoMinutos = form.getPrazoExpiracaoMinutos();
+		Long prazoExpiracaoMinutos = form.getPrazoExpiracaoMinutos(); 
+		if(prazoExpiracaoMinutos != null && prazoExpiracaoMinutos != 0l)
+			this.dataExpiracao = LocalDateTime.now().plusMinutes(prazoExpiracaoMinutos);
 	}
 }

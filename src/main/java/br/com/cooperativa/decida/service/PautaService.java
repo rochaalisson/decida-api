@@ -1,18 +1,19 @@
 package br.com.cooperativa.decida.service;
 
+import static br.com.cooperativa.decida.util.ConversorDeObjeto.converter;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import br.com.cooperativa.decida.dto.PautaDto;
+import br.com.cooperativa.decida.dto.ResultadoPautaDto;
 import br.com.cooperativa.decida.dto.SessaoVotacaoDto;
 import br.com.cooperativa.decida.modelo.Pauta;
 import br.com.cooperativa.decida.modelo.SessaoVotacao;
 import br.com.cooperativa.decida.repository.PautaRepository;
 import br.com.cooperativa.decida.repository.SessaoVotacaoRepository;
-
-import static br.com.cooperativa.decida.util.ConversorDeObjeto.converter;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -48,5 +49,11 @@ public class PautaService {
 		
 		return converter(sessao, SessaoVotacaoDto.class);
 		
+	}
+
+	public ResultadoPautaDto obterResultado(Integer id) throws Exception {
+		Pauta pauta = repository.findById(id).orElseThrow(Exception::new);
+		
+		return new ResultadoPautaDto(pauta);
 	}
 }
