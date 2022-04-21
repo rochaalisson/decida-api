@@ -11,10 +11,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor @Getter
-public class Usuario {
+public class Perfil {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	private String email;
-	private String senha;
+	private String nome;
 }

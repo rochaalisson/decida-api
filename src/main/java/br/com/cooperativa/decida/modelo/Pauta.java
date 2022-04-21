@@ -6,12 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
-@AllArgsConstructor @Getter
+@NoArgsConstructor @Getter
 public class Pauta {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -21,5 +22,6 @@ public class Pauta {
 	@ManyToOne
 	private Usuario usuario;
 	@OneToOne
+	@PrimaryKeyJoinColumn
 	private SessaoVotacao sessaoVotacao;
 }
