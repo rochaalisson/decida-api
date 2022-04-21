@@ -5,6 +5,8 @@ import static br.com.cooperativa.decida.util.ConversorDeObjeto.converter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import br.com.cooperativa.decida.dto.PautaDto;
@@ -22,6 +24,7 @@ public class PautaService {
 	private final PautaRepository repository;
 	private final SessaoVotacaoRepository sessaoRepository;
 	
+	@Transactional
 	public PautaDto cadastrar(PautaDto dto) {
 		Pauta pauta = converter(dto, Pauta.class);
 		pauta = repository.save(pauta);
@@ -37,10 +40,12 @@ public class PautaService {
 				.collect(Collectors.toList());
 	}
 	
+	@Transactional
 	public void deletar(int id) {
 		repository.deleteById(id);
 	}
 	
+	@Transactional
 	public SessaoVotacaoDto abrirSessao(SessaoVotacaoDto dto) {
 		Pauta pauta = repository.getById(dto.getIdPauta());
 		SessaoVotacao sessao = new SessaoVotacao(dto, pauta);

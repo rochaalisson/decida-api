@@ -14,7 +14,7 @@ public class SessaoVotacaoDto {
 	
 	public SessaoVotacaoDto(Integer idPauta, SessaoVotacaoForm form) {
 		this.idPauta = idPauta;
-		Long prazoExpiracaoMinutos = form.getPrazoExpiracaoMinutos(); 
+		Long prazoExpiracaoMinutos = form.getPrazoExpiracaoEmMinutos(); 
 		if(prazoExpiracaoMinutos != null && prazoExpiracaoMinutos != 0l)
 			this.dataExpiracao = LocalDateTime.now().plusMinutes(prazoExpiracaoMinutos);
 	}

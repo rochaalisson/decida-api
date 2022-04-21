@@ -7,5 +7,5 @@ import lombok.Getter;
 @Getter
 public class SessaoVotacaoForm {
 	@Min(1)
-	private Long prazoExpiracaoMinutos;
+	private Long prazoExpiracaoEmMinutos;
 }

@@ -33,9 +33,10 @@ public class Voto {
 	@Column(columnDefinition = "ENUM('Sim', 'Nao')")
 	private OpcaoDeVoto escolha;
 
-	public Voto(VotoDto dto, SessaoVotacao sessao) {
+	public Voto(VotoDto dto, SessaoVotacao sessao, Usuario usuario) {
 		this.escolha = dto.getEscolha();
 		this.sessao = sessao;
+		this.usuario = usuario;
 	}
 	
 	@ManyToOne
