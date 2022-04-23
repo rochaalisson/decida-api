@@ -2,7 +2,6 @@ package br.com.cooperativa.decida.dto;
 
 import java.time.LocalDateTime;
 
-import br.com.cooperativa.decida.controller.form.SessaoVotacaoForm;
 import br.com.cooperativa.decida.modelo.Pauta;
 import br.com.cooperativa.decida.modelo.SessaoVotacao;
 import lombok.Getter;

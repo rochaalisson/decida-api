@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,21 +30,21 @@ public class Voto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private LocalDateTime dataHoraVoto = LocalDateTime.now();
-	@Enumerated(EnumType.STRING)
-	@Column(columnDefinition = "ENUM('Sim', 'Nao')")
+	
+	@Enumerated(EnumType.STRING) @Column(columnDefinition = "ENUM('Sim', 'Nao')")
 	private OpcaoDeVoto escolha;
-
-	public Voto(VotoDto dto, SessaoVotacao sessao, Usuario usuario) {
-		this.escolha = dto.getEscolha();
+	
+	@ManyToOne(fetch = FetchType.EAGER) @JoinColumn(name = "usuario_id")
+	private Usuario usuario;
+	
+	@OneToOne @JoinColumn(name = "pauta_id")
+	private SessaoVotacao sessao;
+	
+	public Voto(OpcaoDeVoto escolha, SessaoVotacao sessao, Usuario usuario) {
+		this.escolha = escolha;
 		this.sessao = sessao;
 		this.usuario = usuario;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name = "usuario_id")
-	private Usuario usuario;
-	@OneToOne
-	@JoinColumn(name = "pauta_id")
-	private SessaoVotacao sessao;
 	
 }

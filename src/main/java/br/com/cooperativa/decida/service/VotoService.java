@@ -1,7 +1,5 @@
 package br.com.cooperativa.decida.service;
 
-import static br.com.cooperativa.decida.util.ConversorDeObjeto.converter;
-
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.stereotype.Service;
@@ -30,9 +28,9 @@ public class VotoService {
 		
 		Usuario usuario = usuarioRepository.findByCpf(dto.getCpfUsuario()).orElseThrow(EntityNotFoundException::new);
 		
-		Voto voto = new Voto(dto, sessao, usuario);
+		Voto voto = dto.toEntity(sessao, usuario);
 		voto = repository.save(voto);
 		
-		return converter(voto, VotoDto.class);
+		return new VotoDto(voto);
 	}
 }
