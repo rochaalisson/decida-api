@@ -22,19 +22,19 @@ public class SessaoVotacao {
 	private Integer idPauta;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 	private LocalDateTime dataExpiracao = dataCriacao.plusMinutes(1);
-	
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "sessao")
 	private List<Voto> votos;
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@MapsId
 	private Pauta pauta;
-	
-	public SessaoVotacao(SessaoVotacaoDto dto, Pauta pauta) {
+
+	public SessaoVotacao(Pauta pauta, LocalDateTime dataExpiracao) {
 		this.pauta = pauta;
-		if(dto.getDataExpiracao() != null)
-			this.dataExpiracao = dto.getDataExpiracao();
+		if (dataExpiracao != null)
+			this.dataExpiracao = dataExpiracao;
 	}
-	
+
 	public Boolean isExpirada() {
 		return LocalDateTime.now().isAfter(dataExpiracao);
 	}

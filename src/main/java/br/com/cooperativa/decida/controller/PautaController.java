@@ -63,7 +63,7 @@ public class PautaController {
 	
 	@PostMapping("/{idPauta}/abrirSessao")
 	public ResponseEntity<SessaoVotacaoDto> abrirSessao(@RequestBody @Valid SessaoVotacaoForm form, @PathVariable Integer idPauta, UriComponentsBuilder uriBuilder) {
-		SessaoVotacaoDto sessao = new SessaoVotacaoDto(idPauta, form);
+		SessaoVotacaoDto sessao = new SessaoVotacaoDto(idPauta, form.getPrazoExpiracaoEmMinutos());
 		sessao = pautaService.abrirSessao(sessao);
 		
 		return ResponseEntity.ok(sessao);

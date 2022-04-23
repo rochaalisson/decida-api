@@ -1,15 +1,11 @@
 package br.com.cooperativa.decida.service;
 
-import static br.com.cooperativa.decida.util.ConversorDeObjeto.converter;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import br.com.cooperativa.decida.dto.PautaDto;
@@ -29,16 +25,16 @@ public class PautaService {
 
 	@Transactional
 	public PautaDto cadastrar(PautaDto dto) {
-		Pauta pauta = converter(dto, Pauta.class);
+		Pauta pauta = dto.toEntity();
 		pauta = repository.save(pauta);
 
-		return converter(pauta, PautaDto.class);
+		return new PautaDto(pauta);
 	}
 
 	public List<PautaDto> listar() {
 		List<Pauta> pautas = (List<Pauta>) repository.findAll();
 
-		return pautas.stream().map(p -> converter(p, PautaDto.class)).collect(Collectors.toList());
+		return pautas.stream().map(p -> new PautaDto(p)).collect(Collectors.toList());
 	}
 
 	@Transactional
@@ -49,11 +45,11 @@ public class PautaService {
 	@Transactional
 	public SessaoVotacaoDto abrirSessao(SessaoVotacaoDto dto) {
 		Pauta pauta = repository.findById(dto.getIdPauta()).orElseThrow(EntityNotFoundException::new);
-		SessaoVotacao sessao = new SessaoVotacao(dto, pauta);
+		SessaoVotacao sessao = dto.toEntity(pauta);
 		
 		sessao = sessaoRepository.save(sessao);
 
-		return converter(sessao, SessaoVotacaoDto.class);
+		return new SessaoVotacaoDto(sessao);
 
 	}
 

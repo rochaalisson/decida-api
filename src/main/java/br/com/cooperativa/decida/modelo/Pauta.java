@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,4 +29,10 @@ public class Pauta {
 	@OneToOne
 	@PrimaryKeyJoinColumn
 	private SessaoVotacao sessaoVotacao;
+	
+	public Pauta(String titulo, String descricao) {
+		this.titulo = titulo;
+		this.descricao = descricao;
+	}
+	
 }
