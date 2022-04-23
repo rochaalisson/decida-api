@@ -1,7 +1,5 @@
 package br.com.cooperativa.decida.controller;
 
-import static br.com.cooperativa.decida.util.ConversorDeObjeto.converter;
-
 import java.net.URI;
 import java.util.List;
 
@@ -33,7 +31,7 @@ public class PautaController {
 	
 	@PostMapping
 	public ResponseEntity<PautaDto> cadastrar(@RequestBody @Valid PautaForm form, UriComponentsBuilder uriBuilder) {
-		PautaDto pauta = converter(form, PautaDto.class);
+		PautaDto pauta = form.toDto();
 		pauta = pautaService.cadastrar(pauta);
 		
 		URI uri = uriBuilder.path("/pautas/{id}").buildAndExpand(pauta.getId()).toUri();
@@ -63,7 +61,7 @@ public class PautaController {
 	
 	@PostMapping("/{idPauta}/abrirSessao")
 	public ResponseEntity<SessaoVotacaoDto> abrirSessao(@RequestBody @Valid SessaoVotacaoForm form, @PathVariable Integer idPauta, UriComponentsBuilder uriBuilder) {
-		SessaoVotacaoDto sessao = new SessaoVotacaoDto(idPauta, form);
+		SessaoVotacaoDto sessao = new SessaoVotacaoDto(idPauta, form.getPrazoExpiracaoEmMinutos());
 		sessao = pautaService.abrirSessao(sessao);
 		
 		return ResponseEntity.ok(sessao);

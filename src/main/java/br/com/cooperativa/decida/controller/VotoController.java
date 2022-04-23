@@ -1,7 +1,5 @@
 package br.com.cooperativa.decida.controller;
 
-import static br.com.cooperativa.decida.util.ConversorDeObjeto.converter;
-
 import java.security.Principal;
 
 import javax.validation.Valid;
@@ -26,7 +24,7 @@ public class VotoController {
 	@PostMapping
 	public ResponseEntity<VotoDto> votar(@RequestBody @Valid VotoForm form, Principal principal) throws Exception {
 		String cpfUsuarioLogado = principal.getName();
-		VotoDto voto = new VotoDto(form, cpfUsuarioLogado);
+		VotoDto voto = form.toDto(cpfUsuarioLogado);
 		voto = votoService.votar(voto);
 		
 		return ResponseEntity.ok(voto);

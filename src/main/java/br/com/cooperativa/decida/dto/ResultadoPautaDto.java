@@ -15,6 +15,6 @@ public class ResultadoPautaDto {
 		this.descricao = pauta.getDescricao();
 		
 		SessaoVotacao sessao = pauta.getSessaoVotacao();
-		this.sessao = sessao != null ? new ResultadoSessaoDto(pauta.getSessaoVotacao()) : null;
+		this.sessao = sessao != null ? new ResultadoSessaoDto(sessao) : null;
 	}
 }
