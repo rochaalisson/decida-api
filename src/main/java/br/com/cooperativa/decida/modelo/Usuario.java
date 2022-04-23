@@ -13,7 +13,6 @@ import javax.persistence.ManyToMany;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -35,6 +34,11 @@ public class Usuario implements UserDetails{
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Perfil> perfis;
+
+	public Usuario(String email, String cpf) {
+		this.email = email;
+		this.cpf = cpf;
+	}
 	
 	@Override
 	public Collection<Perfil> getAuthorities() {

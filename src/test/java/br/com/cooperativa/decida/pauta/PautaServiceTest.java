@@ -2,6 +2,7 @@ package br.com.cooperativa.decida.pauta;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
@@ -12,8 +13,10 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -27,18 +30,23 @@ import br.com.cooperativa.decida.repository.PautaRepository;
 import br.com.cooperativa.decida.repository.SessaoVotacaoRepository;
 import br.com.cooperativa.decida.service.PautaService;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 @ActiveProfiles("test")
 class PautaServiceTest {
-	@Autowired
 	private PautaService pautaService;
-	
-	@MockBean(name = "repository")
+
+	@MockBean
 	private PautaRepository repository;
 
-	@MockBean(name = "sessaoRepository")
+	@MockBean
 	private SessaoVotacaoRepository sessaoRepository;
+	
+	public PautaServiceTest() {
+		this.repository = mock(PautaRepository.class);
+		this.sessaoRepository = mock(SessaoVotacaoRepository.class);
+		
+		this.pautaService = new PautaService(repository, sessaoRepository);
+	}
 	
 	@Test
 	void deveInserirPauta_ParaDadosValidos() throws Exception{
