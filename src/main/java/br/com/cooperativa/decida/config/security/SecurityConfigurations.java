@@ -21,37 +21,37 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @EnableWebSecurity
 @Configuration
-public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
+public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	private final AutenticacaoService autenticacaoService;
 	private final TokenService tokenService;
 	private final UsuarioRepository usuarioRepository;
-	
+
 	@Override
 	@Bean
 	protected AuthenticationManager authenticationManager() throws Exception {
 		return super.authenticationManager();
 	}
-	
+
 	// Autenticacao
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(autenticacaoService).passwordEncoder(new BCryptPasswordEncoder());
 	}
-	
+
 	// Autorizacao
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.antMatchers(HttpMethod.GET, "/pautas").permitAll()
-			.antMatchers(HttpMethod.POST, "/login").permitAll()
-			.anyRequest().authenticated()
-			.and().csrf().disable()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-			.and().addFilterBefore(new AutenticacaoTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class);
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/pautas").permitAll()
+				.antMatchers(HttpMethod.POST, "/login").permitAll().anyRequest().authenticated().and().csrf().disable()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+				.addFilterBefore(new AutenticacaoTokenFilter(tokenService, usuarioRepository),
+						UsernamePasswordAuthenticationFilter.class);
 	}
-	
+
 	// Recursos estáticos
 	@Override
 	public void configure(WebSecurity web) throws Exception {
+	    web.ignoring()
+        	.antMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html");
 	}
 }
