@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>br.com.cooperativa</groupId>
 	<artifactId>decida</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>decida</name>
 	<description>API de pautas de votação</description>
 	<properties>
