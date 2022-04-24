@@ -28,6 +28,7 @@ import br.com.cooperativa.decida.modelo.Pauta;
 import br.com.cooperativa.decida.modelo.SessaoVotacao;
 import br.com.cooperativa.decida.repository.PautaRepository;
 import br.com.cooperativa.decida.repository.SessaoVotacaoRepository;
+import br.com.cooperativa.decida.repository.UsuarioRepository;
 import br.com.cooperativa.decida.service.PautaService;
 
 @ExtendWith(MockitoExtension.class)
@@ -37,15 +38,17 @@ class PautaServiceTest {
 
 	@MockBean
 	private PautaRepository repository;
-
 	@MockBean
 	private SessaoVotacaoRepository sessaoRepository;
+	@MockBean
+	private UsuarioRepository usuarioRepository;
 	
 	public PautaServiceTest() {
 		this.repository = mock(PautaRepository.class);
 		this.sessaoRepository = mock(SessaoVotacaoRepository.class);
+		this.usuarioRepository = mock(UsuarioRepository.class);
 		
-		this.pautaService = new PautaService(repository, sessaoRepository);
+		this.pautaService = new PautaService(repository, sessaoRepository, usuarioRepository);
 	}
 	
 	@Test

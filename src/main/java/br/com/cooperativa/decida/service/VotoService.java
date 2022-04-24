@@ -5,7 +5,7 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.com.cooperativa.decida.dto.VotoDto;
-import br.com.cooperativa.decida.exception.SessaoExpiradaException;
+import br.com.cooperativa.decida.exception.SessaoVotacaoExpiradaException;
 import br.com.cooperativa.decida.modelo.SessaoVotacao;
 import br.com.cooperativa.decida.modelo.Usuario;
 import br.com.cooperativa.decida.modelo.Voto;
@@ -22,11 +22,13 @@ public class VotoService {
 	private final UsuarioRepository usuarioRepository;
 	
 	public VotoDto votar(VotoDto dto) throws Exception {
-		SessaoVotacao sessao = sessaoRepository.findById(dto.getIdPauta()).orElseThrow(EntityNotFoundException::new);
+		SessaoVotacao sessao = sessaoRepository.findById(dto.getIdPauta())
+				.orElseThrow(() -> new EntityNotFoundException("Sessão de votação não encontrada"));
 		if (sessao.isExpirada())
-			throw new SessaoExpiradaException();
+			throw new SessaoVotacaoExpiradaException();
 		
-		Usuario usuario = usuarioRepository.findByCpf(dto.getCpfUsuario()).orElseThrow(EntityNotFoundException::new);
+		Usuario usuario = usuarioRepository.findByCpf(dto.getCpfUsuario())
+				.orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
 		
 		Voto voto = dto.toEntity(sessao, usuario);
 		voto = repository.save(voto);

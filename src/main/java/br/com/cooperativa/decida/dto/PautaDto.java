@@ -10,6 +10,12 @@ public class PautaDto {
 	private String descricao;
 	private Integer id;
 	
+	public PautaDto(Integer id, String titulo, String descricao) {
+		this.id = id;
+		this.titulo = titulo;
+		this.descricao = descricao;
+	}
+	
 	public PautaDto(String titulo, String descricao) {
 		this.titulo = titulo;
 		this.descricao = descricao;

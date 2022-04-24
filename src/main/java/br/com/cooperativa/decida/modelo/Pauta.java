@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import br.com.cooperativa.decida.dto.PautaDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,6 +34,11 @@ public class Pauta {
 	public Pauta(String titulo, String descricao) {
 		this.titulo = titulo;
 		this.descricao = descricao;
+	}
+
+	public void atualizarDados(PautaDto dto) {
+		this.titulo = dto.getTitulo();
+		this.descricao = dto.getDescricao();
 	}
 	
 }
