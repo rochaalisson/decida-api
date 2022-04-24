@@ -1,4 +1,4 @@
-package br.com.cooperativa.decida.modelo;
+package br.com.cooperativa.decida.model.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-import br.com.cooperativa.decida.dto.PautaDto;
+import br.com.cooperativa.decida.model.dto.PautaDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

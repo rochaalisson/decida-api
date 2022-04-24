@@ -1,7 +1,7 @@
-package br.com.cooperativa.decida.dto;
+package br.com.cooperativa.decida.model.dto;
 
-import br.com.cooperativa.decida.modelo.Pauta;
-import br.com.cooperativa.decida.modelo.SessaoVotacao;
+import br.com.cooperativa.decida.model.entity.Pauta;
+import br.com.cooperativa.decida.model.entity.SessaoVotacao;
 import lombok.Getter;
 
 @Getter

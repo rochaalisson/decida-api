@@ -22,10 +22,10 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import br.com.cooperativa.decida.dto.PautaDto;
-import br.com.cooperativa.decida.dto.SessaoVotacaoDto;
-import br.com.cooperativa.decida.modelo.Pauta;
-import br.com.cooperativa.decida.modelo.SessaoVotacao;
+import br.com.cooperativa.decida.model.dto.PautaDto;
+import br.com.cooperativa.decida.model.dto.SessaoVotacaoDto;
+import br.com.cooperativa.decida.model.entity.Pauta;
+import br.com.cooperativa.decida.model.entity.SessaoVotacao;
 import br.com.cooperativa.decida.repository.PautaRepository;
 import br.com.cooperativa.decida.repository.SessaoVotacaoRepository;
 import br.com.cooperativa.decida.repository.UsuarioRepository;

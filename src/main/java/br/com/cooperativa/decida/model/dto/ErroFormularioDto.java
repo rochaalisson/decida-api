@@ -1,4 +1,4 @@
-package br.com.cooperativa.decida.dto;
+package br.com.cooperativa.decida.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,10 +1,10 @@
-package br.com.cooperativa.decida.controller.form;
+package br.com.cooperativa.decida.model.form;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import br.com.cooperativa.decida.dto.VotoDto;
-import br.com.cooperativa.decida.modelo.OpcaoDeVoto;
+import br.com.cooperativa.decida.model.dto.VotoDto;
+import br.com.cooperativa.decida.model.enums.OpcaoDeVoto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

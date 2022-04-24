@@ -1,6 +1,6 @@
-package br.com.cooperativa.decida.dto;
+package br.com.cooperativa.decida.model.dto;
 
-import br.com.cooperativa.decida.modelo.Pauta;
+import br.com.cooperativa.decida.model.entity.Pauta;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

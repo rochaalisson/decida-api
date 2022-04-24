@@ -1,11 +1,11 @@
-package br.com.cooperativa.decida.dto;
+package br.com.cooperativa.decida.model.dto;
 
 import java.time.LocalDateTime;
 
-import br.com.cooperativa.decida.modelo.OpcaoDeVoto;
-import br.com.cooperativa.decida.modelo.SessaoVotacao;
-import br.com.cooperativa.decida.modelo.Usuario;
-import br.com.cooperativa.decida.modelo.Voto;
+import br.com.cooperativa.decida.model.entity.SessaoVotacao;
+import br.com.cooperativa.decida.model.entity.Usuario;
+import br.com.cooperativa.decida.model.entity.Voto;
+import br.com.cooperativa.decida.model.enums.OpcaoDeVoto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

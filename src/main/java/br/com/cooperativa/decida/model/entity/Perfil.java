@@ -1,4 +1,4 @@
-package br.com.cooperativa.decida.modelo;
+package br.com.cooperativa.decida.model.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

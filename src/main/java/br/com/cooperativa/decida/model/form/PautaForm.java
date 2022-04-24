@@ -1,11 +1,10 @@
-package br.com.cooperativa.decida.controller.form;
+package br.com.cooperativa.decida.model.form;
 
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import br.com.cooperativa.decida.dto.PautaDto;
-
+import br.com.cooperativa.decida.model.dto.PautaDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

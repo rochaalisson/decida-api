@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.cooperativa.decida.controller.form.LoginForm;
-import br.com.cooperativa.decida.dto.TokenDto;
+import br.com.cooperativa.decida.model.dto.TokenDto;
+import br.com.cooperativa.decida.model.form.LoginForm;
 import br.com.cooperativa.decida.service.TokenService;
 import lombok.RequiredArgsConstructor;
 

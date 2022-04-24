@@ -4,11 +4,11 @@ import javax.persistence.EntityNotFoundException;
 
 import org.springframework.stereotype.Service;
 
-import br.com.cooperativa.decida.dto.VotoDto;
 import br.com.cooperativa.decida.exception.SessaoVotacaoExpiradaException;
-import br.com.cooperativa.decida.modelo.SessaoVotacao;
-import br.com.cooperativa.decida.modelo.Usuario;
-import br.com.cooperativa.decida.modelo.Voto;
+import br.com.cooperativa.decida.model.dto.VotoDto;
+import br.com.cooperativa.decida.model.entity.SessaoVotacao;
+import br.com.cooperativa.decida.model.entity.Usuario;
+import br.com.cooperativa.decida.model.entity.Voto;
 import br.com.cooperativa.decida.repository.SessaoVotacaoRepository;
 import br.com.cooperativa.decida.repository.UsuarioRepository;
 import br.com.cooperativa.decida.repository.VotoRepository;

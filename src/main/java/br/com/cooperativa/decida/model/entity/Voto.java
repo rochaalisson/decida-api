@@ -1,4 +1,4 @@
-package br.com.cooperativa.decida.modelo;
+package br.com.cooperativa.decida.model.entity;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +16,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import br.com.cooperativa.decida.dto.VotoDto;
+import br.com.cooperativa.decida.model.dto.VotoDto;
+import br.com.cooperativa.decida.model.enums.OpcaoDeVoto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

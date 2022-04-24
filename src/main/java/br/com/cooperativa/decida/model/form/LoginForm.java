@@ -1,4 +1,4 @@
-package br.com.cooperativa.decida.controller.form;
+package br.com.cooperativa.decida.model.form;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 

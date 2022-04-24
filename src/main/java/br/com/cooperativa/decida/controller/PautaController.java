@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.cooperativa.decida.controller.form.PautaForm;
-import br.com.cooperativa.decida.controller.form.SessaoVotacaoForm;
-import br.com.cooperativa.decida.dto.PautaDto;
-import br.com.cooperativa.decida.dto.ResultadoPautaDto;
-import br.com.cooperativa.decida.dto.SessaoVotacaoDto;
+import br.com.cooperativa.decida.model.dto.PautaDto;
+import br.com.cooperativa.decida.model.dto.ResultadoPautaDto;
+import br.com.cooperativa.decida.model.dto.SessaoVotacaoDto;
+import br.com.cooperativa.decida.model.form.PautaForm;
+import br.com.cooperativa.decida.model.form.SessaoVotacaoForm;
 import br.com.cooperativa.decida.service.PautaService;
 import lombok.RequiredArgsConstructor;
 

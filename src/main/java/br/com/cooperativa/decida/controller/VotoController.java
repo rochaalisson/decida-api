@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.cooperativa.decida.controller.form.VotoForm;
-import br.com.cooperativa.decida.dto.VotoDto;
+import br.com.cooperativa.decida.model.dto.VotoDto;
+import br.com.cooperativa.decida.model.form.VotoForm;
 import br.com.cooperativa.decida.service.VotoService;
 import lombok.RequiredArgsConstructor;
 

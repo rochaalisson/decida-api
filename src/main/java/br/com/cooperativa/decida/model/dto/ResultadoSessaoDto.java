@@ -1,4 +1,4 @@
-package br.com.cooperativa.decida.dto;
+package br.com.cooperativa.decida.model.dto;
 
 import java.util.List;
 import java.util.Map;
@@ -6,9 +6,9 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import br.com.cooperativa.decida.modelo.OpcaoDeVoto;
-import br.com.cooperativa.decida.modelo.SessaoVotacao;
-import br.com.cooperativa.decida.modelo.Voto;
+import br.com.cooperativa.decida.model.entity.SessaoVotacao;
+import br.com.cooperativa.decida.model.entity.Voto;
+import br.com.cooperativa.decida.model.enums.OpcaoDeVoto;
 import lombok.Getter;
 
 @Getter

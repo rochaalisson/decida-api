@@ -1,4 +1,4 @@
-package br.com.cooperativa.decida.modelo;
+package br.com.cooperativa.decida.model.entity;
 
 import java.util.Collection;
 import java.util.List;

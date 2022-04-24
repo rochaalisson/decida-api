@@ -11,7 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import br.com.cooperativa.decida.modelo.Usuario;
+import br.com.cooperativa.decida.model.entity.Usuario;
 import br.com.cooperativa.decida.repository.UsuarioRepository;
 import br.com.cooperativa.decida.service.TokenService;
 

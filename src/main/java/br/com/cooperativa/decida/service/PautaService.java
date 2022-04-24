@@ -8,14 +8,14 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import br.com.cooperativa.decida.dto.PautaDto;
-import br.com.cooperativa.decida.dto.ResultadoPautaDto;
-import br.com.cooperativa.decida.dto.SessaoVotacaoDto;
 import br.com.cooperativa.decida.exception.PautaImutavelException;
 import br.com.cooperativa.decida.exception.UsuarioNaoAutorizadoException;
-import br.com.cooperativa.decida.modelo.Pauta;
-import br.com.cooperativa.decida.modelo.SessaoVotacao;
-import br.com.cooperativa.decida.modelo.Usuario;
+import br.com.cooperativa.decida.model.dto.PautaDto;
+import br.com.cooperativa.decida.model.dto.ResultadoPautaDto;
+import br.com.cooperativa.decida.model.dto.SessaoVotacaoDto;
+import br.com.cooperativa.decida.model.entity.Pauta;
+import br.com.cooperativa.decida.model.entity.SessaoVotacao;
+import br.com.cooperativa.decida.model.entity.Usuario;
 import br.com.cooperativa.decida.repository.PautaRepository;
 import br.com.cooperativa.decida.repository.SessaoVotacaoRepository;
 import br.com.cooperativa.decida.repository.UsuarioRepository;

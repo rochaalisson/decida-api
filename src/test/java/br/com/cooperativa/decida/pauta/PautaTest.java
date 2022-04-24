@@ -23,8 +23,8 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.cooperativa.decida.DecidaApplication;
-import br.com.cooperativa.decida.controller.form.PautaForm;
-import br.com.cooperativa.decida.modelo.Pauta;
+import br.com.cooperativa.decida.model.entity.Pauta;
+import br.com.cooperativa.decida.model.form.PautaForm;
 import br.com.cooperativa.decida.repository.PautaRepository;
 
 @ExtendWith(SpringExtension.class)
