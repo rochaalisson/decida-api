@@ -3,6 +3,7 @@ package br.com.cooperativa.decida.controller;
 import java.net.URI;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -41,8 +43,9 @@ public class PautaController {
 	}
 	
 	@GetMapping
-	public List<PautaDto> listar() {
-		return pautaService.listar();
+	public List<PautaDto> listar(@RequestParam Optional<String> titulo,
+			@RequestParam Optional<String> descricao) {
+		return pautaService.listar(titulo, descricao);
 	}
 	
 	@GetMapping("/{id}")

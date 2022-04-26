@@ -19,18 +19,17 @@ import br.com.cooperativa.decida.controller.VotoController;
 @SpringBootTest
 @ActiveProfiles("test")
 class DecidaApplicationTests {
-//	@Autowired
-//	private PautaController pautaController;
-//	@Autowired
-//	private VotoController votoController;
-//	@Autowired
-//	private AutenticacaoController autenticacaoController;
-//
-//	@Test
-//	void contextLoads() {
-//		assertNotNull(pautaController);
-//		assertNotNull(votoController);
-//		assertNotNull(autenticacaoController);
-//	}
+	@Autowired
+	private PautaController pautaController;
+	@Autowired
+	private VotoController votoController;
+	@Autowired
+	private AutenticacaoController autenticacaoController;
 
+	@Test
+	void contextLoads() {
+		assertNotNull(pautaController);
+		assertNotNull(votoController);
+		assertNotNull(autenticacaoController);
+	}
 }

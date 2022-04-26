@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.ActiveProfiles;
 
 import br.com.cooperativa.decida.model.dto.PautaDto;
@@ -60,9 +61,9 @@ class PautaServiceTest {
 		String titulo = "Titulo listagem";
 		Pauta pauta = new Pauta(titulo, "Descricao");
 		List<Pauta> pautas = Arrays.asList(pauta, pauta, pauta);
-		when(repository.findAll()).thenReturn(pautas);
+		when(repository.findAll(any(Specification.class))).thenReturn(pautas);
 		
-		List<PautaDto> pautasDto = pautaService.listar();
+		List<PautaDto> pautasDto = pautaService.listar(Optional.empty(), Optional.empty());
 		
 		assertEquals(3, pautasDto.size());
 		assertEquals(titulo, pautasDto.get(0).getTitulo());

@@ -1,11 +1,15 @@
 package br.com.cooperativa.decida.service;
 
+import static br.com.cooperativa.decida.repository.specification.PautaSpecification.*;
+
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import br.com.cooperativa.decida.exception.PautaImutavelException;
@@ -33,8 +37,10 @@ public class PautaService {
 		return new PautaDto(pauta);
 	}
 
-	public List<PautaDto> listar() {
-		List<Pauta> pautas = repository.findAll();
+	public List<PautaDto> listar(Optional<String> titulo, Optional<String> descricao) {
+		List<Pauta> pautas = repository.findAll(Specification
+				.where(titulo.isPresent() ? tituloContains(titulo.get()) : null)
+				.and(descricao.isPresent() ? descricaoContains(descricao.get()) : null));
 
 		return pautas.stream().map(PautaDto::new).collect(Collectors.toList());
 	}
