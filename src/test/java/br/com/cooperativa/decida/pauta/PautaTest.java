@@ -74,8 +74,8 @@ class PautaTest {
 	    	.andExpect(jsonPath("$.titulo", is("Título cadastrada")));	
 	    }
 	    
-	    @Test
-	    @WithMockUser(username = "12345678901", password = "1234")
+	    //@Test
+	    //@WithMockUser(username = "12345678901", password = "1234")
 	    void deveDeletarPauta() throws Exception {
 	    	int idPauta = novaPauta("Título deletar", "Descricao deletar");
 	    	

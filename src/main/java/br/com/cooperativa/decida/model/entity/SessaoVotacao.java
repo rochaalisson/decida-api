@@ -10,7 +10,6 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import br.com.cooperativa.decida.model.dto.SessaoVotacaoDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -35,7 +34,7 @@ public class SessaoVotacao {
 			this.dataExpiracao = dataExpiracao;
 	}
 
-	public Boolean isExpirada() {
+	public boolean isExpirada() {
 		return LocalDateTime.now().isAfter(dataExpiracao);
 	}
 }

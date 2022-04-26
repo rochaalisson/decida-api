@@ -15,10 +15,8 @@ import br.com.cooperativa.decida.model.dto.ResultadoPautaDto;
 import br.com.cooperativa.decida.model.dto.SessaoVotacaoDto;
 import br.com.cooperativa.decida.model.entity.Pauta;
 import br.com.cooperativa.decida.model.entity.SessaoVotacao;
-import br.com.cooperativa.decida.model.entity.Usuario;
 import br.com.cooperativa.decida.repository.PautaRepository;
 import br.com.cooperativa.decida.repository.SessaoVotacaoRepository;
-import br.com.cooperativa.decida.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -26,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 public class PautaService {
 	private final PautaRepository repository;
 	private final SessaoVotacaoRepository sessaoRepository;
-	private final UsuarioRepository usuarioRepository;
 
 	@Transactional
 	public PautaDto cadastrar(PautaDto dto) {
@@ -39,13 +36,11 @@ public class PautaService {
 	public List<PautaDto> listar() {
 		List<Pauta> pautas = repository.findAll();
 
-		return pautas.stream().map(p -> new PautaDto(p)).collect(Collectors.toList());
+		return pautas.stream().map(PautaDto::new).collect(Collectors.toList());
 	}
 
 	@Transactional
 	public PautaDto atualizar(PautaDto dto, String cpfUsuario) throws Exception {
-		Usuario usuario = usuarioRepository.findByCpf(cpfUsuario)
-				.orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
 		Pauta pauta = repository.findById(dto.getId())
 				.orElseThrow(() -> new EntityNotFoundException("Pauta não encontrada"));
 
@@ -61,8 +56,6 @@ public class PautaService {
 
 	@Transactional
 	public void deletar(int id, String cpfUsuario) throws Exception {
-		Usuario usuario = usuarioRepository.findByCpf(cpfUsuario)
-				.orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
 		Pauta pauta = repository.findById(id)
 				.orElseThrow(() -> new EntityNotFoundException("Pauta não encontrada"));
 

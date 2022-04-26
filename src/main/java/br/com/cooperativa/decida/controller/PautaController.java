@@ -42,16 +42,12 @@ public class PautaController {
 	
 	@GetMapping
 	public List<PautaDto> listar() {
-		List<PautaDto> pautas = pautaService.listar();
-		
-		return pautas;
+		return pautaService.listar();
 	}
 	
 	@GetMapping("/{id}")
-	public ResultadoPautaDto obterResultado(@PathVariable Integer id) throws Exception {
-		ResultadoPautaDto resultado = pautaService.obterResultado(id);
-		
-		return resultado;
+	public ResultadoPautaDto obterResultado(@PathVariable Integer id) {
+		return pautaService.obterResultado(id);
 	}
 	
 	@DeleteMapping("/{id}")

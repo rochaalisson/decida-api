@@ -33,7 +33,7 @@ public class TokenService {
 				.compact();
 	}
 	
-	public Boolean validarToken(String token) {
+	public boolean validarToken(String token) {
 		try {			
 			Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
 			return true;

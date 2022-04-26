@@ -7,9 +7,7 @@ import javax.persistence.Id;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Getter

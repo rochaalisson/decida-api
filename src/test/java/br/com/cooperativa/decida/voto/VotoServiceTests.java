@@ -67,16 +67,16 @@ class VotoServiceTests {
 		Pauta pauta = new Pauta("Titulo", "Descricao");
 		SessaoVotacao sessao = new SessaoVotacao(pauta, dataExpiracao);
 		Usuario usuario = new Usuario("usuario@email.com", cpfUsuario);
-		Voto voto = new Voto(OpcaoDeVoto.Sim, sessao, usuario);
+		Voto voto = new Voto(OpcaoDeVoto.SIM, sessao, usuario);
 		
 		when(sessaoRepository.findById(idPauta)).thenReturn(Optional.of(sessao));
 		when(usuarioRepository.findByCpf(cpfUsuario)).thenReturn(Optional.of(usuario));
 		when(votoRepository.save(any(Voto.class))).thenReturn(voto);
 		
-		VotoDto dto = new VotoDto(OpcaoDeVoto.Sim, idPauta, cpfUsuario);
+		VotoDto dto = new VotoDto(OpcaoDeVoto.SIM, idPauta, cpfUsuario);
 		VotoDto dtoCriado = votoService.votar(dto);
 		
 		assertNotNull(dtoCriado);
-		assertEquals(OpcaoDeVoto.Sim, dtoCriado.getEscolha());
+		assertEquals(OpcaoDeVoto.SIM, dtoCriado.getEscolha());
 	}
 }
