@@ -51,3 +51,16 @@ Para executar este projeto é necessário instalar:
 3. Execute o projeto
 
          mvn spring-boot:run
+
+Após a execução será possível acessar o [Swagger](https://localhost:8080/api/v1/swagger-ui/index.html) e a [raiz](https://localhost:8080/api/v1/) da API.
+
+## Autenticação
+
+Para utilizar a maioria dos endpoints, é necessário se autenticar por meio da rota `/login`.
+
+Para isso, existe um usuário padrão, cujas credenciais são:
+
+   - CPF: 12345678901
+   - Senha: 1234
+
+O retorno da rota é um token JWT, que deve ser enviado no Header Authorization das requisições aos endpoints.
