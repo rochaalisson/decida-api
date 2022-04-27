@@ -24,14 +24,14 @@ import br.com.cooperativa.decida.model.entity.Usuario;
 import br.com.cooperativa.decida.repository.PautaRepository;
 import br.com.cooperativa.decida.repository.SessaoVotacaoRepository;
 import br.com.cooperativa.decida.repository.UsuarioRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class PautaService {
-	private final PautaRepository repository;
-	private final SessaoVotacaoRepository sessaoRepository;
-	private final UsuarioRepository usuarioRepository;
+	private PautaRepository repository;
+	private SessaoVotacaoRepository sessaoRepository;
+	private UsuarioRepository usuarioRepository;
 
 	@Transactional
 	public PautaDto cadastrar(PautaDto dto, String cpfUsuario) {

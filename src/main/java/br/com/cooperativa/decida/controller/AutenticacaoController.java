@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.cooperativa.decida.model.dto.TokenDto;
 import br.com.cooperativa.decida.model.form.LoginForm;
 import br.com.cooperativa.decida.service.TokenService;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RestController
 @RequestMapping("/login")
 public class AutenticacaoController {
-	private final AuthenticationManager authManager;
-	private final TokenService tokenService;
+	private AuthenticationManager authManager;
+	private TokenService tokenService;
 	
 	@PostMapping
 	public ResponseEntity<TokenDto> login(@RequestBody LoginForm form) {

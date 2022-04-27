@@ -26,13 +26,13 @@ import br.com.cooperativa.decida.model.dto.SessaoVotacaoDto;
 import br.com.cooperativa.decida.model.form.PautaForm;
 import br.com.cooperativa.decida.model.form.SessaoVotacaoForm;
 import br.com.cooperativa.decida.service.PautaService;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/pautas")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class PautaController {
-	private final PautaService pautaService;
+	private PautaService pautaService;
 	
 	@PostMapping
 	public ResponseEntity<PautaDto> cadastrar(@RequestBody @Valid PautaForm form, Principal principal, UriComponentsBuilder uriBuilder) {
