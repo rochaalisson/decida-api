@@ -50,10 +50,10 @@ class VotoServiceTests {
 		String cpfUsuario = "12345678901";
 		int idPauta = 1;
 		
-		LocalDateTime dataExpiracao = LocalDateTime.now().plusMinutes(5);
-		Pauta pauta = new Pauta("Titulo", "Descricao");
-		SessaoVotacao sessao = new SessaoVotacao(pauta, dataExpiracao);
 		Usuario usuario = new Usuario("usuario@email.com", cpfUsuario);
+		LocalDateTime dataExpiracao = LocalDateTime.now().plusMinutes(5);
+		Pauta pauta = new Pauta("Titulo", "Descricao", usuario);
+		SessaoVotacao sessao = new SessaoVotacao(pauta, dataExpiracao);
 		Voto voto = new Voto(OpcaoDeVoto.SIM, sessao, usuario);
 		
 		when(sessaoRepository.findById(idPauta)).thenReturn(Optional.of(sessao));

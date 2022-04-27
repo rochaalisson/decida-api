@@ -20,8 +20,10 @@ import br.com.cooperativa.decida.model.dto.ResultadoPautaDto;
 import br.com.cooperativa.decida.model.dto.SessaoVotacaoDto;
 import br.com.cooperativa.decida.model.entity.Pauta;
 import br.com.cooperativa.decida.model.entity.SessaoVotacao;
+import br.com.cooperativa.decida.model.entity.Usuario;
 import br.com.cooperativa.decida.repository.PautaRepository;
 import br.com.cooperativa.decida.repository.SessaoVotacaoRepository;
+import br.com.cooperativa.decida.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -29,10 +31,14 @@ import lombok.RequiredArgsConstructor;
 public class PautaService {
 	private final PautaRepository repository;
 	private final SessaoVotacaoRepository sessaoRepository;
+	private final UsuarioRepository usuarioRepository;
 
 	@Transactional
-	public PautaDto cadastrar(PautaDto dto) {
-		Pauta pauta = dto.toEntity();
+	public PautaDto cadastrar(PautaDto dto, String cpfUsuario) {
+		Usuario usuario = usuarioRepository.findByCpf(cpfUsuario)
+				.orElseThrow(EntityNotFoundException::new);
+		
+		Pauta pauta = dto.toEntity(usuario);
 		pauta = repository.save(pauta);
 
 		return new PautaDto(pauta);
@@ -75,9 +81,13 @@ public class PautaService {
 	}
 
 	@Transactional
-	public SessaoVotacaoDto abrirSessao(SessaoVotacaoDto dto) {
+	public SessaoVotacaoDto abrirSessao(SessaoVotacaoDto dto, String cpfUsuario) throws UsuarioNaoAutorizadoException {		
 		Pauta pauta = repository.findById(dto.getIdPauta())
 				.orElseThrow(() -> new EntityNotFoundException("Pauta não encontrada"));
+		
+		if (!cpfUsuario.equals(pauta.getUsuario().getCpf()))
+			throw new UsuarioNaoAutorizadoException();
+		
 		SessaoVotacao sessao = dto.toEntity(pauta);
 
 		sessao = sessaoRepository.save(sessao);
