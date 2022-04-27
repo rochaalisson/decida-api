@@ -1,6 +1,5 @@
 package br.com.cooperativa.decida.service;
 
-
 import static br.com.cooperativa.decida.repository.specification.PautaSpecification.descricaoContains;
 import static br.com.cooperativa.decida.repository.specification.PautaSpecification.tituloContains;
 
@@ -25,7 +24,6 @@ import br.com.cooperativa.decida.repository.PautaRepository;
 import br.com.cooperativa.decida.repository.SessaoVotacaoRepository;
 import lombok.RequiredArgsConstructor;
 
-
 @Service
 @RequiredArgsConstructor
 public class PautaService {
@@ -39,8 +37,7 @@ public class PautaService {
 
 		return new PautaDto(pauta);
 	}
-
-
+	
 	public List<PautaDto> listar(Optional<String> titulo, Optional<String> descricao) {
 		List<Pauta> pautas = repository.findAll(Specification
 				.where(titulo.isPresent() ? tituloContains(titulo.get()) : null)

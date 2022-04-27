@@ -59,7 +59,8 @@ class VotoServiceTests {
 		when(sessaoRepository.findById(idPauta)).thenReturn(Optional.of(sessao));
 		when(usuarioRepository.findByCpf(cpfUsuario)).thenReturn(Optional.of(usuario));
 		when(votoRepository.save(any(Voto.class))).thenReturn(voto);
-		VotoDto dto = new VotoDto(OpcaoDeVoto.SIM, idPauta, cpfUsuario);
+		
+		VotoDto dto = new VotoDto(OpcaoDeVoto.SIM.toString(), idPauta, cpfUsuario);
 		VotoDto dtoCriado = votoService.votar(dto);
 		
 		assertNotNull(dtoCriado);

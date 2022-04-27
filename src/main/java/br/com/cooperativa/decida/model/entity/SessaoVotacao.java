@@ -33,8 +33,7 @@ public class SessaoVotacao {
 		if (dataExpiracao != null)
 			this.dataExpiracao = dataExpiracao;
 	}
-
-
+	
 	public boolean isExpirada() {
 		return LocalDateTime.now().isAfter(dataExpiracao);
 	}

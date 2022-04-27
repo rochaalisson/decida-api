@@ -9,7 +9,6 @@ import org.springframework.security.core.GrantedAuthority;
 
 import lombok.Getter;
 
-
 @Entity
 @Getter
 public class Perfil implements GrantedAuthority{
