@@ -8,13 +8,13 @@ import lombok.Getter;
 public class ResultadoPautaDto {
 	private String titulo;
 	private String descricao;
-	private ResultadoSessaoDto sessao;
+	private ResultadoSessaoDto resultadoSessao;
 	
 	public ResultadoPautaDto(Pauta pauta) {
 		this.titulo = pauta.getTitulo();
 		this.descricao = pauta.getDescricao();
 		
 		SessaoVotacao sessao = pauta.getSessaoVotacao();
-		this.sessao = sessao != null ? new ResultadoSessaoDto(sessao) : null;
+		this.resultadoSessao = sessao != null ? new ResultadoSessaoDto(sessao) : null;
 	}
 }

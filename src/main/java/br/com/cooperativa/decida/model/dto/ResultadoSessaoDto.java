@@ -34,7 +34,7 @@ public class ResultadoSessaoDto {
 
 		this.porcentagens = votosPorOpcao.entrySet().stream()
 				.collect(Collectors.toMap(
-						e -> e.getKey(),
+						Entry::getKey,
 						e -> (double) e.getValue() / quantidadeTotalVotos * 100d
 						));
 	}

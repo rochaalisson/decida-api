@@ -1,6 +1,7 @@
 package br.com.cooperativa.decida.pauta;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -10,17 +11,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.cooperativa.decida.model.dto.PautaDto;
 import br.com.cooperativa.decida.model.dto.SessaoVotacaoDto;
@@ -28,7 +24,6 @@ import br.com.cooperativa.decida.model.entity.Pauta;
 import br.com.cooperativa.decida.model.entity.SessaoVotacao;
 import br.com.cooperativa.decida.repository.PautaRepository;
 import br.com.cooperativa.decida.repository.SessaoVotacaoRepository;
-import br.com.cooperativa.decida.repository.UsuarioRepository;
 import br.com.cooperativa.decida.service.PautaService;
 
 @ExtendWith(MockitoExtension.class)
@@ -40,15 +35,12 @@ class PautaServiceTest {
 	private PautaRepository repository;
 	@MockBean
 	private SessaoVotacaoRepository sessaoRepository;
-	@MockBean
-	private UsuarioRepository usuarioRepository;
 	
 	public PautaServiceTest() {
 		this.repository = mock(PautaRepository.class);
 		this.sessaoRepository = mock(SessaoVotacaoRepository.class);
-		this.usuarioRepository = mock(UsuarioRepository.class);
 		
-		this.pautaService = new PautaService(repository, sessaoRepository, usuarioRepository);
+		this.pautaService = new PautaService(repository, sessaoRepository);
 	}
 	
 	@Test
@@ -69,9 +61,9 @@ class PautaServiceTest {
 		String titulo = "Titulo listagem";
 		Pauta pauta = new Pauta(titulo, "Descricao");
 		List<Pauta> pautas = Arrays.asList(pauta, pauta, pauta);
-		when(repository.findAll()).thenReturn(pautas);
+		when(repository.findAll(any(Specification.class))).thenReturn(pautas);
 		
-		List<PautaDto> pautasDto = pautaService.listar();
+		List<PautaDto> pautasDto = pautaService.listar(Optional.empty(), Optional.empty());
 		
 		assertEquals(3, pautasDto.size());
 		assertEquals(titulo, pautasDto.get(0).getTitulo());
