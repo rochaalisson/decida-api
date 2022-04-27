@@ -21,8 +21,8 @@ public class VotoDto {
 		return new Voto(this.escolha, sessaoVotacao, usuario);
 	}
 	
-	public VotoDto(OpcaoDeVoto escolha, Integer idPauta, String cpfUsuario) {
-		this.escolha = escolha;
+	public VotoDto(String escolha, Integer idPauta, String cpfUsuario) {
+		this.escolha = OpcaoDeVoto.valueOf(escolha);
 		this.idPauta = idPauta;
 		this.cpfUsuario = cpfUsuario;
 	}
