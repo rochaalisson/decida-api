@@ -39,4 +39,8 @@ public class Pauta {
 		this.descricao = dto.getDescricao();
 	}
 	
+	public void setSessaoVotacao(SessaoVotacao sessaoVotacao) {
+		this.sessaoVotacao = sessaoVotacao;
+	}
+	
 }

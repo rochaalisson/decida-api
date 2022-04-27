@@ -2,6 +2,7 @@ package br.com.cooperativa.decida.config.security;
 
 import java.io.IOException;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,7 @@ public class AutenticacaoTokenFilter extends OncePerRequestFilter {
 
 		if (tokenService.validarToken(token))
 			autenticarCliente(token);
-		
+
 		filterChain.doFilter(request, response);
 	}
 
@@ -43,13 +44,14 @@ public class AutenticacaoTokenFilter extends OncePerRequestFilter {
 		}
 		return token.substring(7);
 	}
-	
+
 	private void autenticarCliente(String token) {
 		Integer idUsuario = tokenService.getIdUsuario(token);
-		Usuario usuario = usuarioRepository.findById(idUsuario).get();
-		
-		UsernamePasswordAuthenticationToken authentication = 
-				new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
+		Usuario usuario = usuarioRepository.findById(idUsuario)
+				.orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+
+		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null,
+				usuario.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}
 }
