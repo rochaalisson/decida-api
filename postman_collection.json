@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "239701d4-a4d3-42ff-a11a-6e478edec6b3",
+		"name": "decida",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pauta",
+			"item": [
+				{
+					"name": "cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"titulo\": \"Titulo da pauta\",\n    \"descricao\": \"Descrição da pauta\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/pautas",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"pautas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/pautas?titulo=tulo&descricao=pauta",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"pautas"
+							],
+							"query": [
+								{
+									"key": "titulo",
+									"value": "tulo"
+								},
+								{
+									"key": "descricao",
+									"value": "pauta"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "abrir sessão",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prazoExpiracaoEmMinutos\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/pautas/1/abrirSessao",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"pautas",
+								"1",
+								"abrirSessao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/pautas/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"pautas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obter resultado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/pautas/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"pautas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"titulo\": \"Titulo novo\",\n    \"descricao\": \"Descricao nova\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/pautas/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"pautas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "votos",
+			"item": [
+				{
+					"name": "votar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"escolha\": \"NAO\",\n    \"idPauta\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/votos",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"votos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cpf\": \"12345678901\",\n    \"senha\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/login",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEZWNpZGFBUEkiLCJzdWIiOiIxIiwiaWF0IjoxNjUxMDIwODU1LCJleHAiOjE2NTEwMjI2NTV9.xwKCBt8aPlvBZWEAvvmV15La2O3kveHO7Mkoghf_DDk",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseurl",
+			"value": "http://localhost:8080/api/v1",
+			"type": "default"
+		}
+	]
+}
