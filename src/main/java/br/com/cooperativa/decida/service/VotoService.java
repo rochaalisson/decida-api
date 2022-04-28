@@ -12,14 +12,14 @@ import br.com.cooperativa.decida.model.entity.Voto;
 import br.com.cooperativa.decida.repository.SessaoVotacaoRepository;
 import br.com.cooperativa.decida.repository.UsuarioRepository;
 import br.com.cooperativa.decida.repository.VotoRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class VotoService {
-	private final VotoRepository repository;
-	private final SessaoVotacaoRepository sessaoRepository;
-	private final UsuarioRepository usuarioRepository;
+	private VotoRepository repository;
+	private SessaoVotacaoRepository sessaoRepository;
+	private UsuarioRepository usuarioRepository;
 	
 	public VotoDto votar(VotoDto dto) throws Exception {
 		SessaoVotacao sessao = sessaoRepository.findById(dto.getIdPauta())

@@ -32,7 +32,7 @@ public class TokenService {
 				.signWith(SignatureAlgorithm.HS256, secret)
 				.compact();
 	}
-	
+
 	public boolean validarToken(String token) {
 		try {			
 			Jwts.parser().setSigningKey(secret).parseClaimsJws(token);

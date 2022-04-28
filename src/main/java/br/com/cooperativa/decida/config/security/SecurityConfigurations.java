@@ -16,15 +16,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import br.com.cooperativa.decida.repository.UsuarioRepository;
 import br.com.cooperativa.decida.service.AutenticacaoService;
 import br.com.cooperativa.decida.service.TokenService;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @EnableWebSecurity
 @Configuration
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
-	private final AutenticacaoService autenticacaoService;
-	private final TokenService tokenService;
-	private final UsuarioRepository usuarioRepository;
+	private AutenticacaoService autenticacaoService;
+	private TokenService tokenService;
+	private UsuarioRepository usuarioRepository;
 
 	@Override
 	@Bean

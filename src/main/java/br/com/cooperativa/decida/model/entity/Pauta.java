@@ -28,14 +28,19 @@ public class Pauta {
 	@PrimaryKeyJoinColumn
 	private SessaoVotacao sessaoVotacao;
 	
-	public Pauta(String titulo, String descricao) {
+	public Pauta(String titulo, String descricao, Usuario usuario) {
 		this.titulo = titulo;
 		this.descricao = descricao;
+		this.usuario = usuario;
 	}
 
 	public void atualizarDados(PautaDto dto) {
 		this.titulo = dto.getTitulo();
 		this.descricao = dto.getDescricao();
+	}
+	
+	public void setSessaoVotacao(SessaoVotacao sessaoVotacao) {
+		this.sessaoVotacao = sessaoVotacao;
 	}
 	
 }

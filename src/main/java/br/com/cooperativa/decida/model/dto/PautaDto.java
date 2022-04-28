@@ -1,6 +1,7 @@
 package br.com.cooperativa.decida.model.dto;
 
 import br.com.cooperativa.decida.model.entity.Pauta;
+import br.com.cooperativa.decida.model.entity.Usuario;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,7 +28,7 @@ public class PautaDto {
 		this.id = pauta.getId();
 	}
 	
-	public Pauta toEntity() {
-		return new Pauta(titulo, descricao);
+	public Pauta toEntity(Usuario usuario) {
+		return new Pauta(titulo, descricao, usuario);
 	}
 }

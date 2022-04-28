@@ -19,24 +19,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.cooperativa.decida.exception.UsuarioNaoAutorizadoException;
 import br.com.cooperativa.decida.model.dto.PautaDto;
 import br.com.cooperativa.decida.model.dto.ResultadoPautaDto;
 import br.com.cooperativa.decida.model.dto.SessaoVotacaoDto;
 import br.com.cooperativa.decida.model.form.PautaForm;
 import br.com.cooperativa.decida.model.form.SessaoVotacaoForm;
 import br.com.cooperativa.decida.service.PautaService;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/pautas")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class PautaController {
-	private final PautaService pautaService;
+	private PautaService pautaService;
 	
 	@PostMapping
-	public ResponseEntity<PautaDto> cadastrar(@RequestBody @Valid PautaForm form, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<PautaDto> cadastrar(@RequestBody @Valid PautaForm form, Principal principal, UriComponentsBuilder uriBuilder) {
 		PautaDto pauta = form.toDto();
-		pauta = pautaService.cadastrar(pauta);
+		String cpfUsuario = principal.getName();
+		pauta = pautaService.cadastrar(pauta, cpfUsuario);
 		
 		URI uri = uriBuilder.path("/pautas/{id}").buildAndExpand(pauta.getId()).toUri();
 		return ResponseEntity.created(uri).body(pauta);
@@ -73,9 +75,12 @@ public class PautaController {
 	}
 	
 	@PostMapping("/{idPauta}/abrirSessao")
-	public ResponseEntity<SessaoVotacaoDto> abrirSessao(@RequestBody @Valid SessaoVotacaoForm form, @PathVariable Integer idPauta, UriComponentsBuilder uriBuilder) {
-		SessaoVotacaoDto sessao = new SessaoVotacaoDto(idPauta, form.getPrazoExpiracaoEmMinutos());
-		sessao = pautaService.abrirSessao(sessao);
+	public ResponseEntity<SessaoVotacaoDto> abrirSessao(@RequestBody @Valid SessaoVotacaoForm form,
+			@PathVariable Integer idPauta, Principal principal, UriComponentsBuilder uriBuilder) throws UsuarioNaoAutorizadoException {
+		SessaoVotacaoDto sessao = form.toDto(idPauta);
+		String cpfUsuario = principal.getName(); 
+		
+		sessao = pautaService.abrirSessao(sessao, cpfUsuario);
 		
 		return ResponseEntity.ok(sessao);
 	}

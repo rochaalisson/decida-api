@@ -5,7 +5,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import br.com.cooperativa.decida.model.dto.VotoDto;
-import br.com.cooperativa.decida.model.enums.OpcaoDeVoto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

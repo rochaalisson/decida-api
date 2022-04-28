@@ -4,7 +4,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import br.com.cooperativa.decida.model.entity.Pauta;
 
-public class PautaSpecification {
+public final class PautaSpecification {
 	public static Specification<Pauta> tituloContains(String titulo) {
 		return (root, query, builder) -> builder.like(root.get("titulo"), "%"+titulo+"%");
 	}

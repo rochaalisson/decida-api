@@ -31,7 +31,7 @@ public class Voto {
 	private Integer id;
 	private LocalDateTime dataHoraVoto = LocalDateTime.now();
 	
-	@Enumerated(EnumType.STRING) @Column(columnDefinition = "ENUM('Sim', 'Nao')")
+	@Enumerated(EnumType.STRING) @Column(columnDefinition = "ENUM('SIM', 'NAO')")
 	private OpcaoDeVoto escolha;
 	
 	@ManyToOne(fetch = FetchType.EAGER) @JoinColumn(name = "usuario_id")

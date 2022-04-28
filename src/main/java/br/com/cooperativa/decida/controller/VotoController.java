@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.cooperativa.decida.model.dto.VotoDto;
 import br.com.cooperativa.decida.model.form.VotoForm;
 import br.com.cooperativa.decida.service.VotoService;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/votos")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class VotoController {
-	private final VotoService votoService;
+	private VotoService votoService;
 	
 	@PostMapping
 	public ResponseEntity<VotoDto> votar(@RequestBody @Valid VotoForm form, Principal principal) throws Exception {
