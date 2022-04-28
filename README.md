@@ -71,5 +71,5 @@ O retorno da rota é um token JWT, que deve ser enviado no Header Authorization 
    - [ ] Tarefa Bônus 2 - Contabilização automática
    - [ ] Tarefa Bônus 3 - Mensageria e filas
    - [x] Tarefa Bônus 4 - Hospede sua API na nuven
-   - [x] Tarefa Bônus 5 - Análise de qualidade do código
+   - [x] Tarefa Bônus 5 - Análise de qualidade do código ([Sonar](sonar.pdf))
    - [x] Tarefa Bônus 6 - Versionamento da API
